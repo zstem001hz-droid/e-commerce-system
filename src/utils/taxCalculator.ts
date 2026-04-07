@@ -7,8 +7,3 @@ export function calculateTax(price: number, category: string): number {
             return price * (4.75 / 100);
         }
     }
-
-
-// Testing
-console.log(calculateTax(100, "groceries"));  
-console.log(calculateTax(100, "electronics"));
