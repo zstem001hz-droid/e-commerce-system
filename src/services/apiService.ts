@@ -18,7 +18,7 @@ export async function fetchProducts() {
     if (error instanceof ProductError) {
       console.error("Product Error:", error.message);
     } else if (error instanceof DataError) {
-      console.error("Dara Error:", error.message);
+      console.error("Data Error:", error.message);
     } else {
       console.error("Unknown Error:", error);
     }
