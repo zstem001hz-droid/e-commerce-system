@@ -1,3 +1,6 @@
+// errorHandler.ts import
+import { ProductError, DataError } from "../utils/errorHandler.js";
+
 // Fetch products from the Dummy JSON API
 export async function fetchProducts() {
   try {
@@ -5,16 +8,19 @@ export async function fetchProducts() {
 
     // Response verification before parsing
     if (!response.ok) {
-        throw new Error("Network response was not established!");
+      throw new ProductError("Failed to fetch products from the API");
     }
 
     // Parse the JSON response
     const data = await response.json();
-    console.log("Products:", data);
+    return data.products; // Return only the products array
   } catch (error) {
-    // Handle any network or parsing errors
-    console.error("Error:", error);
+    if (error instanceof ProductError) {
+      console.error("Product Error:", error.message);
+    } else if (error instanceof DataError) {
+      console.error("Dara Error:", error.message);
+    } else {
+      console.error("Unknown Error:", error);
+    }
   }
 }
-
-fetchProducts();
