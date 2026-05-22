@@ -1,14 +1,20 @@
 # 🛒 E-Commerce Product Management System
 
-A TypeScript application that fetches real product data from the Dummy JSON Products API, implementing OOP principles, async/await, and custom error handling.
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
+![Node.js](https://img.shields.io/badge/Node.js-20.x-green)
+![DummyJSON](https://img.shields.io/badge/API-DummyJSON-orange)
 
-## Table of contents
+A TypeScript application demonstrating enterprise-level patterns including modular architecture, object-oriented design, and resilient error management. Fetches live product data from the DummyJSON API and applies business logic including discount calculations and tax assessments based on product category.
+
+## Table of Contents
 
 - [Overview](#overview)
-- [Features](#features)
-- [Setup](#setup)
-- [Technologies](#technologies)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Application Flow](#application-flow)
+- [Getting Started](#getting-started)
 - [Author](#author)
+- [References](#references)
 - [Reflections](#reflections)
 
 ## Overview
@@ -20,55 +26,68 @@ Built with TypeScript's strict type system, the application enforces type safety
 
 This project serves as a practical demonstration of enterprise-level TypeScript patterns including modular architecture, separation of concerns, and resilient error management - foundational skills for building maintainable, scalable applications.
 
-## Features
-- Fetches real product data from the Dummy JSON Products API
-- Product class with discount and tax calculations
-- Async/await API service with error handling
-- Custom error classes for different error types
-- Modular file structure
+## Tech Stack
 
-## Setup
+- [TypeScript](https://www.typescriptlang.org/) — strict type safety across all modules
+- [Node.js](https://nodejs.org/) — runtime environment
+- [DummyJSON API](https://dummyjson.com/docs/products) — live product data source
+- [ts-node](https://typestrong.org/ts-node/) — TypeScript execution without manual compilation
+
+## Project Structure
+
+```
+e-commerce-system/
+├── src/
+│   ├── models/
+│   │   └── Product.ts          ← base class with properties and methods
+│   ├── services/
+│   │   └── apiService.ts       ← async data fetching from DummyJSON API
+│   ├── utils/
+│   │   ├── discountCalculator.ts  ← dollar amount discount calculation
+│   │   ├── taxCalculator.ts       ← category-based tax calculation
+│   │   └── errorHandler.ts        ← custom error class
+│   └── main.ts                 ← orchestrates all modules
+├── .env.example
+├── .gitignore
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+## Application Flow
+
+1. `apiService.ts` fetches live product data from DummyJSON Products API using `async/await`
+2. API response mapped to typed `Product` class instances — TypeScript enforces type safety
+3. `discountCalculator.ts` calculates dollar amount discounted per product
+4. `taxCalculator.ts` applies 4.75% tax for standard products, 3% for groceries
+5. Custom error class in `errorHandler.ts` catches and manages failures gracefully
+6. `main.ts` orchestrates all modules and outputs calculated results
+
+## Getting Started
 
 ### Prerequisites
-- Node.js
-- npm
+- Node.js v20+
+- TypeScript v5+
 
 ### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/zstem001hz-droid/e-commerce-system.git
-cd e-commerce-system
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Compile TypeScript:
-```bash
-npx tsc
-```
-
-4. Run the application:
-```bash
-node dist/main.js
-```
+1. Clone the repository
+2. Run `npm install`
+3. Run `npx ts-node src/main.ts`
 
 ### Notes
 - No API key required - uses the free Dummy JSON Products API
 - Displays 30 products with discount and tax calculations
 - Groceries are taxed at 3%, all other categories at 4.75%
 
-## Technologies
-- Node.js
-- TypeScript
-- Dummy JSON Products API
-
 ## Author
 
 Zac White
+
+## References
+
+- [DummyJSON Products API](https://dummyjson.com/docs/products)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [ts-node](https://typestrong.org/ts-node/)
 
 ## Reflections
 
